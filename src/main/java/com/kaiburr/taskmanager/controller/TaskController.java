@@ -4,15 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.kaiburr.taskmanager.model.Task;
 import com.kaiburr.taskmanager.repository.TaskRepository;
+
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/tasks")  // base path for all task endpoints
 public class TaskController {
 
     @Autowired
     private TaskRepository taskRepository;
+
+    // Home endpoint (optional, can be /tasks/home)
+    @GetMapping("/home")
+    public String home() {
+        return "Welcome to Task Manager API!";
+    }
 
     @GetMapping
     public List<Task> getAllTasks() {
